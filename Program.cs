@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Turcas_Malina_Lab2.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<Turcas_Malina_Lab2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Turcas_Malina_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Turcas_Malina_Lab2Context' not found.")));
 
 var app = builder.Build();
 
